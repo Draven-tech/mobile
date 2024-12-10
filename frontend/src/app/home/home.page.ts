@@ -15,39 +15,39 @@ export class HomePage {
   ];
 
   categories = [
-    { name: 'Electronics', icon: 'assets/icons/electronics.png' },
-    { name: 'Fashion', icon: 'assets/icons/fashion.png' },
-    { name: 'Home & Garden', icon: 'assets/icons/home-garden.png' },
-    { name: 'Toys', icon: 'assets/icons/toys.png' },
-    { name: 'Sports', icon: 'assets/icons/sports.png' },
-    { name: 'Beauty', icon: 'assets/icons/beauty.png' },
-    { name: 'Automotive', icon: 'assets/icons/automotive.png' },
-    { name: 'Groceries', icon: 'assets/icons/groceries.png' }
+    { name: 'Beverages', icon: 'assets/icons/beverages.png' },
+    { name: 'Fruits', icon: 'assets/icons/fruits.png' },
+    { name: 'Vegetables', icon: 'assets/icons/vegs.png' },
+    { name: 'Snacks', icon: 'assets/icons/snacks.png' },
+    { name: 'Condiments', icon: 'assets/icons/condi.png' },
+    { name: 'Toiletries', icon: 'assets/icons/toilet.png' },
+    { name: 'Frozen Foods', icon: 'assets/icons/frozenfoods.png' },
+    { name: 'Dairy', icon: 'assets/icons/dairy.png' }
   ];
 
   products = [
     { 
-      name: 'Wireless Headphones', 
-      description: 'Noise-cancelling over-ear headphones', 
-      price: 199.99, 
+      name: 'Banana', 
+      description: 'long, curved fruits with soft, sweet flesh and a thick skin.', 
+      price: 1.99, 
       imageUrl: 'assets/products/headphones.jpg' 
     },
     { 
-      name: 'Smartphone X12', 
-      description: 'Latest model smartphone with 128GB storage', 
-      price: 899.99, 
+      name: 'Apple', 
+      description: ' is a round, edible fruit that comes from an apple tree and is part of the rose family.', 
+      price: 2.99, 
       imageUrl: 'assets/products/smartphone.jpg' 
     },
     { 
-      name: 'Sports Watch', 
-      description: 'Waterproof sports watch with GPS', 
-      price: 99.99, 
+      name: 'Carrots', 
+      description: 'root vegetables that are long, firm, crisp, and have a sweet flavor', 
+      price: 3.99, 
       imageUrl: 'assets/products/watch.jpg' 
     },
     { 
-      name: '4K Smart TV', 
-      description: '50-inch 4K Smart TV with streaming apps', 
-      price: 599.99, 
+      name: 'Strawberries', 
+      description: 'a sweet, juicy, and bright red fruit', 
+      price: 4.99, 
       imageUrl: 'assets/products/tv.jpg' 
     }
   ];
