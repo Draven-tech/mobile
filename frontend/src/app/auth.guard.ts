@@ -8,15 +8,15 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: any): boolean {
-    const isLoggedIn = !!localStorage.getItem('user');
+    const isLoggedIn = !!localStorage.getItem('user'); // Check session
 
-    // If user is logged in and trying to access login, redirect to home
+    // If the user is logged in and trying to access login, redirect to home
     if (route.routeConfig?.path === 'login' && isLoggedIn) {
       this.router.navigate(['/home']);
       return false;
     }
 
-    // If accessing protected routes like home, ensure they are logged in
+    // For protected routes, redirect to login if not logged in
     if (!isLoggedIn) {
       this.router.navigate(['/login']);
       return false;

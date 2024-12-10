@@ -8,6 +8,8 @@ const sqlite3 = require('sqlite3').verbose();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var groceryItemsRouter = require('./routes/grocery_items');
+var basketRouter = require('./routes/basket');
 
 
 const cors = require('cors') //cors
@@ -40,8 +42,33 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
     email TEXT NOT NULL UNIQUE
 );`);
 
+// Create grocery_items table if it doesn't exist
+db.run(`CREATE TABLE IF NOT EXISTS grocery_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    item_name TEXT NOT NULL,
+    quantity TEXT NOT NULL,
+    category TEXT,
+    status TEXT DEFAULT 'Not Purchased',
+    note TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);`);
+
+db.run(`CREATE TABLE basket_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    item_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (item_id) REFERENCES grocery_items (id)
+);`);
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/grocery-items', groceryItemsRouter);
+app.use('/basket', basketRouter);
 
 // Use environment variable for the port or default to 3000
 const port = process.env.PORT || 3000;

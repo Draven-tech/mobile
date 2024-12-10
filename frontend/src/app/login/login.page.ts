@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,31 +13,8 @@ export class LoginPage {
 
   constructor(
     private http: HttpClient, 
-    private alertController: AlertController,
-    private router: Router
+    private alertController: AlertController
   ) {}
-
-  ionViewWillEnter() {
-    const isLoggedIn = !!localStorage.getItem('user');
-    if (isLoggedIn) {
-      this.router.navigate(['/home']);
-    }
-
-    console.log('ionViewWillEnter triggered');
-  try {
-    const user = JSON.parse(localStorage.getItem('user') || 'null');
-    console.log('User session:', user);
-    if (user) {
-      console.log('User logged in. Redirecting to /home');
-      this.router.navigate(['/home']);
-    } else {
-      console.log('No user session found.');
-    }
-  } catch (error) {
-    console.error('Error parsing user session:', error);
-    localStorage.removeItem('user'); // Clear corrupted session
-  }
-  }
 
   async login() {
     if (!this.username || !this.password) {
