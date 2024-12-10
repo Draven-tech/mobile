@@ -1,26 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Cart</ion-title>
+    <ion-title>Cart</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="cartItems.length > 0; else emptyCart">
+  <ion-list>
     <ion-item *ngFor="let item of cartItems">
+      <!-- Display product thumbnail -->
+      <ion-thumbnail slot="start">
+        <img [src]="item.product.imageUrl" alt="{{ item.product.name }}">
+      </ion-thumbnail>
+      
+      <!-- Product details -->
       <ion-label>
-        <h2>{{ item.item_name }}</h2>
-        <p>{{ item.category }}</p>
+        <h2>{{ item.product.name }}</h2>
+        <p>{{ item.product.price | currency }}</p>
         <p>Quantity: {{ item.quantity }}</p>
       </ion-label>
-      <ion-button color="danger" slot="end" (click)="removeFromCart(item.basket_id)">
+      
+      <!-- Remove button -->
+      <ion-button slot="end" color="danger" (click)="removeFromCart(item.id)">
         Remove
       </ion-button>
     </ion-item>
   </ion-list>
-
-  <ng-template #emptyCart>
-    <ion-text color="medium">
-      <h3>Your cart is empty.</h3>
-    </ion-text>
-  </ng-template>
 </ion-content>
