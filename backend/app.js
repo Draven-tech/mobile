@@ -48,9 +48,7 @@ db.run(`CREATE TABLE IF NOT EXISTS grocery_items (
     quantity TEXT NOT NULL,
     category TEXT,
     status TEXT DEFAULT 'Not Purchased',
-    note TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    note TEXT
 );`);
 
 db.run(`CREATE TABLE IF NOT EXISTS basket_items (
