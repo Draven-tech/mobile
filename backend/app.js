@@ -42,7 +42,6 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
     email TEXT NOT NULL UNIQUE
 );`);
 
-// Create grocery_items table if it doesn't exist
 db.run(`CREATE TABLE IF NOT EXISTS grocery_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     item_name TEXT NOT NULL,
@@ -54,7 +53,7 @@ db.run(`CREATE TABLE IF NOT EXISTS grocery_items (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );`);
 
-db.run(`CREATE TABLE basket_items (
+db.run(`CREATE TABLE IF NOT EXISTS basket_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     item_id INTEGER NOT NULL,
