@@ -117,4 +117,22 @@ router.post('/login', (req, res) => {
       }
   });
 });
+
+
+router.get('/profile', (req, res) => {
+  const userId = req.query.id;
+  const query = 'SELECT username FROM users WHERE id = ?';
+
+  db.get(query, [userId], (err, row) => {
+      if (err) {
+          console.error('Database Error:', err.message);
+          res.status(500).json({ error: 'Database error' });
+      } else if (row) {
+          res.status(200).json({ username: row.username });
+      } else {
+          res.status(404).json({ error: 'User not found' });
+      }
+  });
+});
+
 module.exports = router;

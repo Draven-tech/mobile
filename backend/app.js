@@ -47,8 +47,9 @@ db.run(`CREATE TABLE IF NOT EXISTS grocery_items (
     item_name TEXT NOT NULL,
     quantity TEXT NOT NULL,
     category TEXT,
-    status TEXT DEFAULT 'Not Purchased',
-    note TEXT
+    note TEXT,
+
+    FOREIGN KEY (category_id) REFERENCES categories (id)
 );`);
 
 db.run(`CREATE TABLE IF NOT EXISTS basket_items (
@@ -59,6 +60,11 @@ db.run(`CREATE TABLE IF NOT EXISTS basket_items (
     added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (item_id) REFERENCES grocery_items (id)
+);`);
+
+db.run(`CREATE TABLE IF NOT EXISTS categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
 );`);
 
 

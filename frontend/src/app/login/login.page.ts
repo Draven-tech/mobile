@@ -27,13 +27,16 @@ export class LoginPage {
     this.http.post('http://localhost:8600/users/login', loginData).subscribe(
       async (response: any) => {
         if (response.success) {
-          // Store session data in localStorage
-          localStorage.setItem('user', JSON.stringify(response.user)); // Save the user details
+          // Save the user details, including the username
+          localStorage.setItem('user', JSON.stringify({
+            id: response.user.id,
+            username: response.user.username
+          }));
   
           this.showAlert('Success', 'Login successful!');
           
-          // Navigate to home page
-          window.location.href = '/home'; // Redirect to the home page
+          // Redirect to the home page
+          window.location.href = '/home';
         } else {
           this.showAlert('Error', response.message);
         }

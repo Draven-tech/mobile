@@ -1,12 +1,46 @@
-import { Component } from '@angular/core'; 
-import { Router } from '@angular/router'; // Import Router
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+username: string = '';
+
+  constructor(
+    private router: Router, 
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef 
+  ) {}
+
+ 
+
+  getUserDetails() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}'); // Retrieve user from localStorage
+    const userId = user.id; // Assume `id` is stored in localStorage during login
+
+    if (!userId) {
+      console.error('User ID not found in localStorage');
+      this.router.navigate(['/login']); // Redirect to login if no user ID
+      return;
+    }
+
+    this.http.get(`http://localhost:8600/users/profile?id=${userId}`).subscribe(
+      (response: any) => {
+        console.log('Fetched username:', response.username); // Debugging log
+        this.username = response.username; // Set the username
+        this.cdr.detectChanges(); // Trigger change detection
+      },
+      (error) => {
+        console.error('Error fetching user details:', error);
+      }
+    );
+  }
+
 
   banners = [
     { imageUrl: 'assets/banners/BANNER.png' }
@@ -50,7 +84,14 @@ export class HomePage {
     }
   ];
 
-  constructor(private router: Router) {}
+  ngOnInit() {
+    this.loadUsername(); 
+  }
+
+  loadUsername() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.username = user.username || 'Guest'; 
+  }
 
   logout() {
     localStorage.removeItem('user'); 
@@ -67,3 +108,5 @@ export class HomePage {
     this.router.navigate(['/product', product.name]); 
   }
 }
+
+
