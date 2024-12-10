@@ -1,0 +1,34 @@
+{
+    "header": {
+        "visible": true,
+        "headerSlides": [
+            {
+                "background": "bg1",
+                "image": "s3-prd.png"
+            },
+            {
+                "background": "bg2",
+                "image": "s4-prd.png"
+            },
+            {
+                "background": "bg3",
+                "image": "s5-prd.png"
+            }
+        ],
+        "subTitle": {
+            "textColor": "#FFF",
+            "text": "Experience Crystal-Clear Vision"
+        },        
+        "title": {
+            "textColor": "#FFF",
+            "text": "Unleash the Power of Our 20/20 Vision Supplement!",
+            "mob": "Experience Crystal-Clear Vision: Unleash the Power of Our 20/20 Vision Supplement!"
+        },
+        "review": {
+            "textColor": "#FFF",
+            "image": "rewv-img.png",
+            "name": "- Susan E , 65",
+            "text": "<b>Unbelievable results!</b> &#128525; My vision is now sharp,focused, and fatigue-free!"
+        }
+    }
+}
