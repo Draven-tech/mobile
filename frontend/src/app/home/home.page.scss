@@ -1,17 +1,26 @@
+/* Global Styles */
 ion-content {
-  --background: #1a1a1a;
+  --background: #f1f8e9; /* Light, fresh green background for the app */
 }
 
 ion-slides {
   height: 200px;
   margin-bottom: 10px;
+  background: #81C784; /* Soft green for the banner */
+  border-radius: 10px;
 }
 
 .categories ion-card {
   text-align: center;
-  background: #fff;
+  background: #ffffff; /* White background for cards */
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: #f1f8e9;
+  padding: 15px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.categories ion-card:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 .categories ion-img {
@@ -21,18 +30,19 @@ ion-slides {
 }
 
 .categories .category-name {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
-  color: #333;
+  color: #388E3C; /* Dark green color for category name */
 }
 
 ion-list-header {
-  background: #f5f5f5;
+  background: #4CAF50; /* Fresh green background for headers */
   padding: 10px 15px;
+  color: white;
 }
 
 ion-item {
-  --background: #101010;
+  --background: #ffffff; /* White background for each product */
   margin-bottom: 10px;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -46,15 +56,42 @@ ion-item ion-thumbnail {
 ion-item ion-label h2 {
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff;
+  color: #388E3C; /* Green for product title */
 }
 
 ion-item ion-label p {
   font-size: 12px;
-  color: #666;
+  color: #666; /* Light gray for product description */
 }
 
 ion-item ion-label strong {
   font-size: 14px;
-  color: #e60023;
+  color: #e60023; /* Red for price or important text */
+}
+
+/* Button styles */
+ion-button {
+  --background: #66BB6A; /* Bright green for the logout button */
+  --color: white;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+ion-button:hover {
+  --background: #4CAF50; /* Darker green on hover */
+}
+
+ion-button:focus {
+  outline: none;
+}
+
+ion-toolbar {
+  --background: transparent; /* Transparent toolbar to let the content show through */
+  --color: #388E3C; /* Green toolbar text */
+}
+
+ion-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #388E3C; /* Green title */
 }
