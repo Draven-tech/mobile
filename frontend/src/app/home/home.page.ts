@@ -3,6 +3,14 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 
+interface Product { 
+  id: number;
+  item_name: string;
+  quantity: string;
+  category_id: string;
+  note?: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -10,6 +18,7 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class HomePage implements OnInit {
 username: string = '';
+products: Product[] = [];
 
   constructor(
     private router: Router, 
@@ -17,9 +26,17 @@ username: string = '';
     private cdr: ChangeDetectorRef 
   ) {}
 
- 
+ ngOnInit() {
+    this.loadUsername(); 
+    this.fetchProducts();
+  }
 
-  getUserDetails() {
+  loadUsername() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.username = user.username || 'Guest';  
+  }
+
+  getUserDetails() { // Adjusted for consistency
     const user = JSON.parse(localStorage.getItem('user') || '{}'); // Retrieve user from localStorage
     const userId = user.id; // Assume `id` is stored in localStorage during login
 
@@ -47,51 +64,15 @@ username: string = '';
   ];
 
   categories = [
-    { name: 'Beverages', icon: 'assets/icon/beverages.png' },
-    { name: 'Fruits', icon: 'assets/icon/fruits.png' },
-    { name: 'Vegetables', icon: 'assets/icon/vegs.png' },
-    { name: 'Snacks', icon: 'assets/icon/snacks.png' },
-    { name: 'Condiments', icon: 'assets/icon/condi.png' },
-    { name: 'Toiletries', icon: 'assets/icon/toilet.png' },
-    { name: 'Frozen Foods', icon: 'assets/icon/frozenfoods.png' },
-    { name: 'Dairy', icon: 'assets/icon/dairy.png' }
+    { id: 1, name: 'Beverages', icon: 'assets/icon/beverages.png' },
+    { id: 2, name: 'Fruits', icon: 'assets/icon/fruits.png' },
+    { id: 3, name: 'Vegetables', icon: 'assets/icon/vegs.png' },
+    { id: 4, name: 'Snacks', icon: 'assets/icon/snacks.png' },
+    { id: 5, name: 'Condiments', icon: 'assets/icon/condi.png' },
+    { id: 6, name: 'Toiletries', icon: 'assets/icon/toilet.png' },
+    { id: 7, name: 'Frozen Foods', icon: 'assets/icon/frozenfoods.png' },
+    { id: 8, name: 'Dairy', icon: 'assets/icon/dairy.png' }
   ];
-
-  products = [
-    { 
-      name: 'Bananas', 
-      description: 'long, curved fruits with soft, sweet flesh and a thick skin.', 
-      price: 1.99, 
-      imageUrl: 'assets/products/Bananas.png' 
-    },
-    { 
-      name: 'Apples', 
-      description: ' is a round, edible fruit that comes from an apple tree and is part of the rose family.', 
-      price: 2.99, 
-      imageUrl: 'assets/products/Apples.png' 
-    },
-    { 
-      name: 'Carrots', 
-      description: 'root vegetables that are long, firm, crisp, and have a sweet flavor', 
-      price: 3.99, 
-      imageUrl: 'assets/products/Carrots.png' 
-    },
-    { 
-      name: 'Strawberries', 
-      description: 'a sweet, juicy, and bright red fruit', 
-      price: 4.99, 
-      imageUrl: 'assets/products/Strawberries.png' 
-    }
-  ];
-
-  ngOnInit() {
-    this.loadUsername(); 
-  }
-
-  loadUsername() {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.username = user.username || 'Guest'; 
-  }
 
   logout() {
     localStorage.removeItem('user'); 
@@ -99,10 +80,48 @@ username: string = '';
   }
 
   viewCategory(category: any) {
-    console.log('Category clicked:', category);
-    this.router.navigate(['/category', category.name]); 
+    console.log('Category clicked:', category); // Debug log for category object
+    const categoryId = category.id; // Extract the ID from the category object
+    console.log('Category ID:', categoryId); // Debug log for category ID
+    this.fetchProducts(categoryId); // Fetch products for the selected category
+  
+    this.http.get(`http://localhost:8600/products?categoryId=${category}`).subscribe(
+      (response: any) => {
+        this.products = response; // Update the product list with the fetched products
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+        // Optional: Handle specific errors (e.g., session expired)
+        if (error.status === 401) {
+          // Redirect to login if session is invalid
+          this.router.navigate(['/login']);
+
+          this.fetchProducts(categoryId);
+        }
+      }
+    );
   }
 
+  fetchProducts(categoryId?: string) {
+    let url = 'http://localhost:8600/grocery-items'; // Correct endpoint
+    if (categoryId) {
+      url += `?categoryId=${categoryId}`; // Pass categoryId as query parameter
+    }
+  
+    console.log('Fetching products from URL:', url); // Debugging log for the URL
+  
+    this.http.get<Product[]>(url).subscribe(
+      (response: Product[]) => {
+        console.log(`Fetched products for category ${categoryId}:`, response);
+        this.products = response; // Update the products array
+      },
+      (error) => {
+        console.error('Error fetching products:', error); // Log the error
+      }
+    );
+  }
+  
+  
   viewProduct(product: any) {
     console.log('Product clicked:', product);
     this.router.navigate(['/product', product.name]); 

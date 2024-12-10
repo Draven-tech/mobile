@@ -46,7 +46,7 @@ db.run(`CREATE TABLE IF NOT EXISTS grocery_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     item_name TEXT NOT NULL,
     quantity TEXT NOT NULL,
-    category TEXT,
+    category_id TEXT,
     note TEXT,
 
     FOREIGN KEY (category_id) REFERENCES categories (id)
@@ -91,6 +91,33 @@ process.on('SIGINT', () => {
     });
 });
 
+app.get('/grocery-items', (req, res) => {
+    const categoryId = req.query.categoryId; // Get categoryId from query params
+    console.log('Received Category ID:', categoryId); // Debugging log
 
+    let query = 'SELECT * FROM grocery_items';
+    const params = [];
+
+    if (categoryId) {
+        query += ' WHERE category_id = ?'; // Add WHERE clause to filter by category_id
+        params.push(categoryId); // Add categoryId to query parameters
+    }
+
+    console.log('Executing SQL Query:', query, 'Params:', params); // Debugging log for query and parameters
+
+    db.all(query, params, (err, rows) => {
+        if (err) {
+            console.error('Error executing query:', err.message);
+            res.status(500).json({ error: 'Database error' });
+        } else {
+            console.log('Query Result:', rows); // Debugging log for query result
+            res.status(200).json(rows); // Return the rows
+        }
+    });
+});
+
+  
+  
+  
 
 module.exports = app;
