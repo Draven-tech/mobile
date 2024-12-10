@@ -1,0 +1,62 @@
+/* login.page.scss */
+
+ion-header {
+    --background: #4CAF50; /* Green background */
+    --color: white; /* White text */
+  }
+  
+  ion-toolbar {
+    --background: #4CAF50; /* Same green color for toolbar */
+  }
+  
+  ion-title {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  ion-content {
+    --background: #85bc83; /* Light gray background for content */
+    padding: 20px;
+  }
+  
+  ion-item {
+    margin-bottom: 15px; /* Spacing between input fields */
+  }
+  
+  ion-label {
+    font-size: 16px;
+    color: #d9eb9d; /* Darker label color */
+  }
+  
+  ion-input {
+    --background: rgb(88, 72, 72); /* White background for input */
+    --border-radius: 8px; /* Rounded corners for input fields */
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  }
+  
+  ion-button {
+    --background: #4CAF50; /* Green background for the button */
+    --color: rgb(255, 255, 255); /* White text on button */
+    --border-radius: 8px; /* Rounded button edges */
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  ion-button:hover {
+    --background: #45a049; /* Slightly darker green on hover */
+  }
+  
+  ion-button:focus {
+    outline: none; /* Remove focus outline for cleaner look */
+  }
+  
+  ion-item:last-child {
+    margin-bottom: 0; /* Remove bottom margin for the last input field */
+  }
+  
+  .alert-message {
+    font-size: 16px;
+    color: #ff3b30; /* Red color for alert messages */
+  }
+  
