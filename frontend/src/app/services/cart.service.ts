@@ -1,24 +1,22 @@
+// cart.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:3000/basket'; // Update with your API base URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  addToCart(userId: number, itemId: number, quantity: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add`, { userId, itemId, quantity });
-  }
-
+  // Get cart items for a user
   getCartItems(userId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${userId}`);
+    return this.http.get<any[]>(`/api/cart/${userId}`); // Adjust API URL as necessary
   }
 
-  removeFromCart(basketId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/remove/${basketId}`);
+  // Remove item from cart by basketId
+  removeFromCart(basketId: number): Observable<void> {
+    return this.http.delete<void>(`/api/cart/${basketId}`); // Adjust API URL as necessary
   }
 }

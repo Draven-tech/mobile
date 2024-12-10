@@ -108,5 +108,3 @@ username: string = '';
     this.router.navigate(['/product', product.name]); 
   }
 }
-
-
