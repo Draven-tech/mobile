@@ -9,46 +9,44 @@ import { Router } from '@angular/router'; // Import Router
 export class HomePage {
 
   banners = [
-    { imageUrl: 'assets/banners/banner1.jpg' },
-    { imageUrl: 'assets/banners/banner2.jpg' },
-    { imageUrl: 'assets/banners/banner3.jpg' }
+    { imageUrl: 'assets/banners/BANNER.png' }
   ];
 
   categories = [
-    { name: 'Beverages', icon: 'assets/icons/beverages.png' },
-    { name: 'Fruits', icon: 'assets/icons/fruits.png' },
-    { name: 'Vegetables', icon: 'assets/icons/vegs.png' },
-    { name: 'Snacks', icon: 'assets/icons/snacks.png' },
-    { name: 'Condiments', icon: 'assets/icons/condi.png' },
-    { name: 'Toiletries', icon: 'assets/icons/toilet.png' },
-    { name: 'Frozen Foods', icon: 'assets/icons/frozenfoods.png' },
-    { name: 'Dairy', icon: 'assets/icons/dairy.png' }
+    { name: 'Beverages', icon: 'assets/icon/beverages.png' },
+    { name: 'Fruits', icon: 'assets/icon/fruits.png' },
+    { name: 'Vegetables', icon: 'assets/icon/vegs.png' },
+    { name: 'Snacks', icon: 'assets/icon/snacks.png' },
+    { name: 'Condiments', icon: 'assets/icon/condi.png' },
+    { name: 'Toiletries', icon: 'assets/icon/toilet.png' },
+    { name: 'Frozen Foods', icon: 'assets/icon/frozenfoods.png' },
+    { name: 'Dairy', icon: 'assets/icon/dairy.png' }
   ];
 
   products = [
     { 
-      name: 'Banana', 
+      name: 'Bananas', 
       description: 'long, curved fruits with soft, sweet flesh and a thick skin.', 
       price: 1.99, 
-      imageUrl: 'assets/products/headphones.jpg' 
+      imageUrl: 'assets/products/Bananas.png' 
     },
     { 
-      name: 'Apple', 
+      name: 'Apples', 
       description: ' is a round, edible fruit that comes from an apple tree and is part of the rose family.', 
       price: 2.99, 
-      imageUrl: 'assets/products/smartphone.jpg' 
+      imageUrl: 'assets/products/Apples.png' 
     },
     { 
       name: 'Carrots', 
       description: 'root vegetables that are long, firm, crisp, and have a sweet flavor', 
       price: 3.99, 
-      imageUrl: 'assets/products/watch.jpg' 
+      imageUrl: 'assets/products/Carrots.png' 
     },
     { 
       name: 'Strawberries', 
       description: 'a sweet, juicy, and bright red fruit', 
       price: 4.99, 
-      imageUrl: 'assets/products/tv.jpg' 
+      imageUrl: 'assets/products/Strawberries.png' 
     }
   ];
 
