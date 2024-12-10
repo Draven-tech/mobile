@@ -84,4 +84,37 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/login', (req, res) => {
+  const username = req.body.username.trim();
+  const password = req.body.password.trim();
+
+  if (!username || !password) {
+      console.log('Missing username or password');
+      return res.status(400).json({ error: 'Username and password are required' });
+  }
+
+  const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  db.get(query, [username, password], (err, row) => {
+      if (err) {
+          console.error('Database Error:', err.message);
+          return res.status(500).json({ error: 'Database error' });
+      }
+
+      if (row) {
+          console.log('User Found:', row);
+          res.status(200).json({
+              success: true,
+              message: 'Login successful',
+              user: {
+                  id: row.id,
+                  username: row.username,
+                  email: row.email,
+              },
+          });
+      } else {
+          console.log('Invalid credentials');
+          res.status(401).json({ success: false, message: 'Invalid username or password' });
+      }
+  });
+});
 module.exports = router;
