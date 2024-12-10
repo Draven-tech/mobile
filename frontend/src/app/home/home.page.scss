@@ -1,18 +1,18 @@
-/* Global Styles */
+
 ion-content {
-  --background: #f1f8e9; /* Light, fresh green background for the app */
+  --background: #f1f8e9; 
 }
 
 ion-slides {
   height: 200px;
   margin-bottom: 10px;
-  background: #81C784; /* Soft green for the banner */
+  background: #81C784;
   border-radius: 10px;
 }
 
 .categories ion-card {
   text-align: center;
-  background: #ffffff; /* White background for cards */
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: #f1f8e9;
   padding: 15px;
@@ -20,7 +20,7 @@ ion-slides {
 }
 
 .categories ion-card:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+  transform: scale(1.05);
 }
 
 .categories ion-img {
@@ -32,20 +32,20 @@ ion-slides {
 .categories .category-name {
   font-size: 14px;
   font-weight: bold;
-  color: #388E3C; /* Dark green color for category name */
+  color: #388E3C;
 }
 
 ion-list-header {
-  background: #4CAF50; /* Fresh green background for headers */
+  background: #4CAF50;
   padding: 10px 15px;
   color: white;
 }
 
 ion-item {
-  --background: #ffffff; /* White background for each product */
+  --background: #ffffff;
   margin-bottom: 10px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: #f1f8e9;
 }
 
 ion-item ion-thumbnail {
@@ -56,29 +56,28 @@ ion-item ion-thumbnail {
 ion-item ion-label h2 {
   font-size: 16px;
   font-weight: bold;
-  color: #388E3C; /* Green for product title */
+  color: #388E3C;
 }
 
 ion-item ion-label p {
   font-size: 12px;
-  color: #666; /* Light gray for product description */
+  color: #666;
 }
 
 ion-item ion-label strong {
   font-size: 14px;
-  color: #e60023; /* Red for price or important text */
+  color: #e60023;
 }
 
-/* Button styles */
 ion-button {
-  --background: #66BB6A; /* Bright green for the logout button */
+  --background: #66BB6A;
   --color: white;
   border-radius: 8px;
   font-size: 14px;
 }
 
 ion-button:hover {
-  --background: #4CAF50; /* Darker green on hover */
+  --background: #4CAF50;
 }
 
 ion-button:focus {
@@ -86,12 +85,12 @@ ion-button:focus {
 }
 
 ion-toolbar {
-  --background: transparent; /* Transparent toolbar to let the content show through */
-  --color: #388E3C; /* Green toolbar text */
+  --background: transparent;
+  --color: #388E3C;
 }
 
 ion-title {
   font-size: 24px;
   font-weight: bold;
-  color: #388E3C; /* Green title */
+  color: #388E3C;
 }
