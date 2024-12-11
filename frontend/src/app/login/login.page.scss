@@ -1,12 +1,12 @@
 /* login.page.scss */
 
 ion-header {
-    --background: #4CAF50; /* Green background */
-    --color: white; /* White text */
+    --background: #4CAF50; 
+    --color: white; 
   }
   
   ion-toolbar {
-    --background: #4CAF50; /* Same green color for toolbar */
+    --background: #4CAF50; 
   }
   
   ion-title {
@@ -16,47 +16,47 @@ ion-header {
   }
   
   ion-content {
-    --background: #85bc83; /* Light gray background for content */
+    --background: #f1f8e9; 
     padding: 20px;
   }
   
   ion-item {
-    margin-bottom: 15px; /* Spacing between input fields */
+    margin-bottom: 15px; 
   }
   
   ion-label {
     font-size: 16px;
-    color: #d9eb9d; /* Darker label color */
+    color: #d9eb9d; 
   }
   
   ion-input {
-    --background: #85bc83; /* White background for input */
-    --border-radius: 8px; /* Rounded corners for input fields */
-    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    --background: #4CAF50; 
+    --border-radius: 8px; 
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   }
   
   ion-button {
-    --background: #4CAF50; /* Green background for the button */
-    --color: rgb(255, 255, 255); /* White text on button */
-    --border-radius: 8px; /* Rounded button edges */
+    --background: #4CAF50; 
+    --color: rgb(255, 255, 255); 
+    --border-radius: 8px; 
     font-size: 16px;
     margin-top: 20px;
   }
   
   ion-button:hover {
-    --background: #45a049; /* Slightly darker green on hover */
+    --background: #45a049; 
   }
   
   ion-button:focus {
-    outline: none; /* Remove focus outline for cleaner look */
+    outline: none; 
   }
   
   ion-item:last-child {
-    margin-bottom: 0; /* Remove bottom margin for the last input field */
+    margin-bottom: 0; 
   }
   
   .alert-message {
     font-size: 16px;
-    color: #ff3b30; /* Red color for alert messages */
+    color: #ff3b30; 
   }
   
