@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Add items</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addItem()">
+    <ion-item>
+      <ion-label position="floating">Item Name</ion-label>
+      <ion-input [(ngModel)]="itemName" name="itemName" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Quantity</ion-label>
+      <ion-input [(ngModel)]="quantity" name="quantity" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Category ID</ion-label>
+      <ion-input [(ngModel)]="categoryId" name="categoryId" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Note</ion-label>
+      <ion-input [(ngModel)]="note" name="note"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit">Add Item</ion-button>
+  </form>
+</ion-content>

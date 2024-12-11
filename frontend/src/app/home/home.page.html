@@ -18,6 +18,8 @@
     </ion-slide> 
   </ion-slides>
 
+  <ion-button expand="block" color="primary" (click)="goToAddPage()">Add Item</ion-button>
+
   <!-- Category -->
   <ion-grid>
     <ion-row>
@@ -34,14 +36,14 @@
   <ion-list>
     <ion-item *ngFor="let product of products" (click)="viewProduct(product)">
       <ion-thumbnail slot="start">
-        <!-- Uncomment if images are added -->
-        <!-- <img [src]="product.imageUrl"> -->
       </ion-thumbnail>
       <ion-label>
         <h2>{{ product.item_name }}</h2> 
         <p>Quantity: {{ product.quantity }}</p> 
         <p *ngIf="product.note">{{ product.note }}</p> 
       </ion-label>
+      <ion-button color="tertiary" (click)="editProduct(product)">Edit</ion-button>
+      <ion-button color="danger" (click)="confirmDelete(product)">Delete</ion-button>
     </ion-item>
   </ion-list>
   

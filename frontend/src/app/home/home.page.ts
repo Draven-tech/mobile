@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 interface Product { 
   id: number;
@@ -23,7 +24,8 @@ products: Product[] = [];
   constructor(
     private router: Router, 
     private http: HttpClient,
-    private cdr: ChangeDetectorRef 
+    private cdr: ChangeDetectorRef,
+    private alertController: AlertController
   ) {}
 
  ngOnInit() {
@@ -58,6 +60,7 @@ products: Product[] = [];
     );
   }
 
+  
 
   banners = [
     { imageUrl: 'assets/banners/BANNER.png' }
@@ -121,9 +124,62 @@ products: Product[] = [];
     );
   }
   
+  async confirmDelete(product: any) {
+    const alert = await this.alertController.create({
+      header: 'Confirm Delete',
+      message: `Are you sure you want to delete "${product.item_name}"?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Delete canceled');
+          },
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.deleteProduct(product.id); // Ensure `product.id` is a number
+          },
+        },
+      ],
+    });
   
+    await alert.present();
+  }
+
   viewProduct(product: any) {
     console.log('Product clicked:', product);
     this.router.navigate(['/product', product.name]); 
   }
+
+  goToAddPage() {
+    const user = localStorage.getItem('user'); // Check for user session
+    if (!user) {
+      console.error('User not logged in. Redirecting to login...');
+      this.router.navigate(['/login']); // Redirect to login if no session
+    } else {
+      this.router.navigate(['/add-item']); // Navigate to the Add Item page
+    }
+  }
+
+  editProduct(product: any) {
+    console.log('Editing Product ID:', product.id); 
+    this.router.navigate(['/edit-item', product.id]);
+  }
+
+  deleteProduct(productId: number) {
+    console.log('Deleting product with ID:', productId); // Debugging log
+    this.http.delete(`http://localhost:8600/grocery-items/${productId}`).subscribe(
+      (response: any) => {
+        console.log('Item deleted successfully:', response);
+        // Refresh the product list after deletion
+        this.products = this.products.filter((product) => product.id !== productId);
+      },
+      (error) => {
+        console.error('Error deleting item:', error);
+      }
+    );
+  }
+
 }

@@ -25,10 +25,24 @@ const routes: Routes = [
     loadChildren: () => import('./cart/cart.module').then((m) => m.CartPageModule),
   },
 
+  
+  {
+    path: 'add-item',
+    loadChildren: () => import('./add-item/add-item.module').then( m => m.AddItemPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-item/:id',
+    loadChildren: () => import('./edit-item/edit-item.module').then( m => m.EditItemPageModule),
+    canActivate: [AuthGuard],
+  },
   {
     path: '**',
     redirectTo: 'login',
   },
+  
+
+
 ];
 
 @NgModule({

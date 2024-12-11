@@ -1,24 +1,22 @@
 require('dotenv').config(); // Load environment variables
 
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const sqlite3 = require('sqlite3').verbose();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var groceryItemsRouter = require('./routes/grocery_items');
-var basketRouter = require('./routes/basket');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const groceryItemsRouter = require('./routes/grocery_items');
+const basketRouter = require('./routes/basket');
 
 
 const cors = require('cors') //cors
 
 var app = express();
 
-// enabling CORS for any unknown origin(https://xyz.example.com)
 app.use(cors()); //cors
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -80,7 +78,9 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
-// Close the database connection when the application ends
+
+
+// Close the database connection when the application ends  
 process.on('SIGINT', () => {
     db.close((err) => {
         if (err) {
@@ -90,33 +90,6 @@ process.on('SIGINT', () => {
         process.exit(0);
     });
 });
-
-app.get('/grocery-items', (req, res) => {
-    const categoryId = req.query.categoryId; // Get categoryId from query params
-    console.log('Received Category ID:', categoryId); // Debugging log
-
-    let query = 'SELECT * FROM grocery_items';
-    const params = [];
-
-    if (categoryId) {
-        query += ' WHERE category_id = ?'; // Add WHERE clause to filter by category_id
-        params.push(categoryId); // Add categoryId to query parameters
-    }
-
-    console.log('Executing SQL Query:', query, 'Params:', params); // Debugging log for query and parameters
-
-    db.all(query, params, (err, rows) => {
-        if (err) {
-            console.error('Error executing query:', err.message);
-            res.status(500).json({ error: 'Database error' });
-        } else {
-            console.log('Query Result:', rows); // Debugging log for query result
-            res.status(200).json(rows); // Return the rows
-        }
-    });
-});
-
-  
   
   
 

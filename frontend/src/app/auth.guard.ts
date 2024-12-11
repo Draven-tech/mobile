@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -7,11 +7,13 @@ import { CanActivate, Router } from '@angular/router';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
-  canActivate(route: any): boolean {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     const isLoggedIn = !!localStorage.getItem('user'); // Check session
+    const currentRoute = route.routeConfig?.path; // Get the current route
+    console.log('AuthGuard: Current Route:', currentRoute, 'Logged In:', isLoggedIn);
 
-    // If the user is logged in and trying to access login, redirect to home
-    if (route.routeConfig?.path === 'login' && isLoggedIn) {
+    // If logged in and trying to access the login page, redirect to home
+    if (currentRoute === 'login' && isLoggedIn) {
       this.router.navigate(['/home']);
       return false;
     }
@@ -22,6 +24,6 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
-    return true;
+    return true; // Allow navigation
   }
 }
